@@ -1,5 +1,7 @@
 import 'package:dotenv/dotenv.dart';
 import 'package:flutter/material.dart';
+import 'package:guesstune/feature/auth/presentation/screens/auth_screen.dart';
+import 'package:guesstune/feature/auth/presentation/screens/register_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -13,12 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Material App Bar')),
-        body: const Center(child: Text('Hello World')),
-      ),
-    );
+    return MaterialApp(title: 'Material App', home: AuthScreen());
   }
 }
