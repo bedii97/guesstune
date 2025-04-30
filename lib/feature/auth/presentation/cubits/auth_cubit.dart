@@ -37,4 +37,24 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthErrorState("Bir hata oluştu: $e"));
     }
   }
+
+  Future<void> signup(String email, String password, String name) async {
+    try {
+      final user = await authRepo.signUpWithEmailAndPassword(
+        name: name,
+        email: email,
+        password: password,
+      );
+      if (user != null) {
+        emit(AuthRegisteredState("Kayıt başarılı!"));
+      } else {
+        emit(AuthErrorState("Not authenticated"));
+      }
+    } on supabase.AuthException catch (e) {
+      final errorMessage = _translateErrorMessage(e);
+      emit(AuthErrorState(errorMessage));
+    } catch (e) {
+      emit(AuthErrorState("Bir hata oluştu: $e"));
+    }
+  }
 }

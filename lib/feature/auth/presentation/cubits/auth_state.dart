@@ -15,3 +15,9 @@ class AuthErrorState extends AuthState {
 
   AuthErrorState(this.errorMessage);
 }
+
+class AuthRegisteredState extends AuthState {
+  final String message;
+
+  AuthRegisteredState(this.message);
+}
