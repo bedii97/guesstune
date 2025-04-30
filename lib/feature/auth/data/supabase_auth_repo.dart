@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:guesstune/feature/auth/domain/repos/auth_repo.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -14,6 +16,9 @@ class SupabaseAuthRepo extends AuthRepo {
         password: password,
       );
       return response.user;
+    } on AuthException catch (e) {
+      log('Supabase Auth Error: ${e.message}, Code: ${e.statusCode}');
+      rethrow;
     } catch (e) {
       rethrow;
     }
